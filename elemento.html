@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
+    <link rel="stylesheet" href="css/elemento.css">
+    <title id="titulo">Elemento</title>
+</head>
+<body>
+    <div class="cards-wrap" id="cards-wrap"></div>
+
+    <footer>
+        <ul>
+            <li><img class="img" src="imagenes/icon (1).ico" alt="Logo"></li>
+            <li><p class="home" id="loginButton">Home</p></li>
+        </ul>
+        <p>© 2024 Oracle of the Zodiac | Todos los derechos reservados</p>
+    </footer>
+
+    <script src="js/signos-data.js"></script>
+    <script>
+        // Cada página de elemento redirige acá pasando ?tipo=fuego|tierra|aire|agua
+        const tipo = new URLSearchParams(window.location.search).get("tipo") || "fuego";
+        const nombres = { fuego: "Fuego", tierra: "Tierra", aire: "Aire", agua: "Agua" };
+        document.body.dataset.elemento = tipo;
+        document.getElementById("titulo").textContent = nombres[tipo] || "Elemento";
+    </script>
+    <script src="js/elemento.js"></script>
+</body>
+</html>

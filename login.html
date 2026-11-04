@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar - Oracle Zodiac</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <img class="logo" src="imagenes/principal.png" alt="Oracle Zodiac">
+
+        <div class="tabs">
+            <button type="button" class="tab-btn active" data-tab="login">Iniciar sesión</button>
+            <button type="button" class="tab-btn" data-tab="registro">Registrarse</button>
+        </div>
+
+        <form id="form-login" class="form-auth">
+            <label for="login-usuario">Usuario</label>
+            <input type="text" id="login-usuario" required autocomplete="username">
+            <label for="login-password">Contraseña</label>
+            <input type="password" id="login-password" required autocomplete="current-password">
+            <p class="error" id="login-error"></p>
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <form id="form-registro" class="form-auth" hidden>
+            <label for="registro-usuario">Usuario</label>
+            <input type="text" id="registro-usuario" required autocomplete="username">
+            <label for="registro-password">Contraseña</label>
+            <input type="password" id="registro-password" required minlength="4" autocomplete="new-password">
+            <p class="error" id="registro-error"></p>
+            <button type="submit">Crear cuenta</button>
+        </form>
+
+        <a class="volver" href="index.html">&larr; Volver al inicio</a>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        const tabs = document.querySelectorAll(".tab-btn");
+        const forms = { login: document.getElementById("form-login"), registro: document.getElementById("form-registro") };
+
+        tabs.forEach(btn => btn.addEventListener("click", () => {
+            tabs.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            Object.entries(forms).forEach(([key, form]) => form.hidden = key !== btn.dataset.tab);
+        }));
+
+        forms.login.addEventListener("submit", e => {
+            e.preventDefault();
+            const usuario = document.getElementById("login-usuario").value.trim();
+            const password = document.getElementById("login-password").value;
+            const resultado = loguearUsuario(usuario, password);
+            const errorEl = document.getElementById("login-error");
+            if (resultado.ok) {
+                window.location.href = `index.html?mensaje=ingreso_exitoso&usuario=${encodeURIComponent(usuario)}`;
+            } else {
+                errorEl.textContent = resultado.error;
+            }
+        });
+
+        forms.registro.addEventListener("submit", e => {
+            e.preventDefault();
+            const usuario = document.getElementById("registro-usuario").value.trim();
+            const password = document.getElementById("registro-password").value;
+            const resultado = registrarUsuario(usuario, password);
+            const errorEl = document.getElementById("registro-error");
+            if (resultado.ok) {
+                window.location.href = `index.html?mensaje=ingreso_exitoso&usuario=${encodeURIComponent(usuario)}`;
+            } else {
+                errorEl.textContent = resultado.error;
+            }
+        });
+
+        // Si ya hay sesión iniciada, no tiene sentido mostrar el login.
+        if (usuarioActual()) {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

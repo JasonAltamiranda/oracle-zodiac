@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Zodiacal</title>
+    <script defer src="ascendente.js"></script>
+    <link rel="stylesheet" href="css/ascendente.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Zodiacal</h1>
+        <label for="fecha">Fecha de nacimiento:</label>
+        <input type="date" id="fecha">
+        <br>
+        <label for="hora">Hora de nacimiento:</label>
+        <input type="time" id="hora">
+        <br>
+        <button id="calcularBtn">Calcular</button>
+        <br>
+        <div class="resultados">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Signo Zodiacal</h2>
+                </div>
+                <div class="card-content">
+                <p id="zodiacalResultado"></p>
+                <img class="card-image" id="imgZodiacal" src="" alt="Signo Zodiacal" style="display: none;">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Horoscopo Chino</h2>
+                </div>
+                <div class="card-content">
+                <p id="chinoResultado"></p>
+                <img class="card-image" id="imgChino" src="" alt="" style="display: none;">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Ascendente</h2>
+                </div>
+                <div class="card-content">
+                <p id="ascendenteResultado"></p>
+                <img class="card-image" id="imgAscendente" src="" alt="Ascendente" style="display: none;">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Descendente</h2>
+                </div>
+                <div class="card-content">
+                <p id="descendenteResultado"></p>
+                <img class="card-image" id="imgDescendente" src="" alt="Descendente" style="display: none;">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Signo Lunar</h2>
+                </div>
+                <div class="card-content">
+                <p id="signoLunarResultado"></p>
+                <img class="card-image" id="imgLuna" src="" alt="Signo Lunar" style="display: none;">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
